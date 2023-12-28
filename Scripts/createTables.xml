@@ -1,0 +1,193 @@
+﻿  <xml version="1.0">
+	  IF OBJECT_ID (N'"UserMaster"', N'U') IS NOT NULL
+
+	  /****** Object:  Table [dbo].[UserMaster]    Script Date: 19-08-2023 18:01:52 ******/
+	  SET ANSI_NULLS ON
+	  GO
+
+	  SET QUOTED_IDENTIFIER ON
+	  GO
+
+	  CREATE TABLE [dbo].[UserMaster](
+	  [id] [int] IDENTITY(1,1) NOT NULL,
+	  [linkid] [bigint] NOT NULL unique,
+	  [emailid] [varchar](100) NULL,
+	  [username] [varchar](100) NULL,
+	  [mobile] [bigint] NULL,
+	  [password] [varchar](100) NULL,
+	  [isactive] [smallint] NULL,
+	  [isdelete] [smallint] NULL,
+	  [dob] [datetime] NULL,
+	  [createdon] [datetime] NULL,
+	  PRIMARY KEY CLUSTERED
+	  (
+	  [id] ASC
+	  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+	  ) ON [PRIMARY]
+	  GO
+
+	  ALTER TABLE [dbo].[UserMaster] ADD  DEFAULT (getdate()) FOR [createdon]
+	  GO;)
+
+
+	  <!--ALTER TABLE [dbo].[UserMaster]  WITH CHECK ADD CHECK  (([mobile]>=(0) AND [mobile]<=(9999999999.)))-->
+	<!--GO-->
+</xml>
+
+<xml version="1.0">
+	IF OBJECT_ID (N'"bookinghistory"', N'U') IS NOT NULL
+	SQLSTATE[HY000]: General error: 1 unknown database [dbo] (SQL: CREATE TABLE [dbo].[bookinghistory](
+	[id] [int] NOT NULL,
+	[linkid] [bigint] NOT NULL unique,
+	[userlinkid] [bigint] NOT NULL,
+	[fromplacelinkid] [bigint] NOT NULL,
+	[toplacelinkid] [bigint] NOT NULL,
+	[fromdate] [datetime] NULL,
+	[todate] [datetime] NOT NULL,
+	[bookingstatus] [smallint] NULL,
+	[isactive] [smallint] NULL,
+	[isconfirmed] [smallint] NULL,
+	[bookingamount] [int] NULL,
+	[paymentlinkid] [bigint] NOT NULL,
+	[vehiclelinkid] [bigint] NOT NULL,
+	[driverlinkid] [bigint] NOT NULL,
+	[managerlinkid] [bigint] NOT NULL,
+	[partnerlinkid] [bigint] NOT NULL,
+	PRIMARY KEY CLUSTERED
+	(
+	[id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
+
+	ALTER TABLE [dbo].[bookinghistory] ADD  DEFAULT (getdate()) FOR [fromdate]
+	GO
+
+	ALTER TABLE [dbo].[bookinghistory] ADD  DEFAULT ((0)) FOR [bookingstatus]
+	GO
+
+	ALTER TABLE [dbo].[bookinghistory] ADD  DEFAULT ((0)) FOR [isactive]
+	GO
+
+	ALTER TABLE [dbo].[bookinghistory] ADD  DEFAULT ((0)) FOR [isconfirmed]
+	GO;)
+</xml>
+
+<xml version="1.0">
+	IF OBJECT_ID (N'"otphits"', N'U') IS NOT NULL
+	SQLSTATE[HY000]: General error: 1 near "SET": syntax error (SQL: SET QUOTED_IDENTIFIER ON
+	GO
+
+	CREATE TABLE [dbo].[otphits](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[mobile] [bigint] NULL,
+	[emailid] [varchar](70) NULL,
+	[otp] [int] NOT NULL,
+	[isdelete] [smallint] NULL,
+	PRIMARY KEY CLUSTERED
+	(
+	[id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
+
+	ALTER TABLE [dbo].[otphits] ADD  DEFAULT ((0)) FOR [mobile]
+	GO;)
+</xml>
+<xml version="1.0">
+	IF OBJECT_ID (N'"placemaster"', N'U') IS NOT NULL
+	SQLSTATE[HY000]: General error: 1 near "SET": syntax error (SQL: SET QUOTED_IDENTIFIER ON
+	GO
+
+	CREATE TABLE [dbo].[placemaster](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[linkid] [bigint] NOT NULL unique,
+	[placename] [varchar](100) NULL,
+	[statelinkid] [bigint] NOT NULL,
+	PRIMARY KEY CLUSTERED
+	(
+	[id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO;)
+</xml>
+<xml version="1.0">
+	IF OBJECT_ID (N'"statemaster"', N'U') IS NOT NULL
+	create table statemaster(
+	id identity(1,1) primary key,
+	linkid bigint not null unique,
+	latitude float,
+	longitude float,
+	name varchar(100),
+	state_code nvarchar(50),
+	type nvarchar(50),
+	isactive smallint,
+	isdelete smallint
+	)
+</xml>
+
+<xml version="1.1">
+	IF OBJECT_ID(N'"citymaster"', N'U') IS NOT NULL
+	create table citymaster(
+	id int identity(1,1) primary key,
+	linkid bigint not null unique,
+	latitude float,
+	longitude float,
+	name varchar(50),
+	state_id int,
+	state_code nvarchar(50),
+	isactive tinyint,
+	isdelete tinyint
+	)
+	<xml version="1.1">
+		IF OBJECT_ID(N'"packagemaster"', N'U') IS NOT NULL
+		create table packagemaster(
+		id int identity(1,1) primary key,
+		linkid bigint unique not null,
+		partnerlinkid bigint,
+		vehiclelinkid bigint,
+		ratepkm int
+		)
+	</xml>
+	<xml version="1.1">
+		IF OBJECT_ID(N'"vehiclemaster"', N'U') IS NOT NULL
+		create table vehiclemaster(
+		id int identity(1,1) primary key,
+		linkid bigint unique not null,
+		seater int ,
+		vehiclename varchar(100)
+		)
+	</xml>
+	<xml version="1.1">
+		IF OBJECT_ID(N'"citydetail"', N'U') IS NOT NULL
+		create table citydetail(
+		id int identity(1,1) primary key,
+		linkid bigint unique not null,
+		citylinkid bigint,
+		img varchar(max),
+		img2 varchar(max),
+		img3 varchar(max),
+		img4 varchar(max),
+		img5 varchar(max),
+		img6 varchar(max),
+		img7 varchar(max),
+		img8 varchar(max),
+		img9 varchar(max),
+		img10 varchar(max),
+		img11 varchar(max),
+		img12 varchar(max),
+		img13 varchar(max),
+		header varchar(100),
+		subheader varchar(150),
+		subheader2 varchar(200),
+		subheader3 varchar(250),
+		content varchar(max),
+		neareststationname varchar(max),
+		stationdistance int,
+		nearestbusname varchar(max),
+		busdistance int,
+		nearestairport varchar(max),
+		airportdistance int
+		)
+	</xml>
+</xml>

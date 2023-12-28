@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "Iz2FuF1uqzvxrqlS5x7EgLSebFCqOosaPqM7UvICT90=",
+  "Source": "yatracub",
+  "BasePath": "_content/yatracub",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "yatracub\\wwwroot",
+      "Source": "yatracub",
+      "ContentRoot": "D:\\Project\\api\\yatracub\\wwwroot\\",
+      "BasePath": "_content/yatracub",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Project\\api\\yatracub\\wwwroot\\emailTemplate.html",
+      "SourceId": "yatracub",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\api\\yatracub\\wwwroot\\",
+      "BasePath": "_content/yatracub",
+      "RelativePath": "emailTemplate.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emailTemplate.html"
+    }
+  ]
+}
